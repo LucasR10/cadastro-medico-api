@@ -3,7 +3,12 @@ package br.com.fullstack.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 public class Medico implements Serializable {
@@ -17,6 +22,8 @@ public class Medico implements Serializable {
 	 * */
 	
 	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonInclude(Include.NON_NULL)
 	private Long codigo;
 	private String primeironome;
 	private String ultimoNome;
@@ -39,6 +46,9 @@ public class Medico implements Serializable {
 		this.email = email;
 		this.ativo = ativo;
 		this.ocupado = ocupado;
+	}
+	
+	public Medico() {
 	}
 
 	public Long getCodigo() {
