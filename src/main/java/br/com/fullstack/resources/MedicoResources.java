@@ -29,9 +29,9 @@ public class MedicoResources {
 		this.repository.save(medico);
 	}
 	
-	
-	@RequestMapping(value="/excluir", method=RequestMethod.DELETE)
+	@RequestMapping(value="/deletar/{id}", method=RequestMethod.DELETE)
 	public void  delete( @PathVariable("id") Long id ) {
+	 System.out.println( id );
 		this.repository.delete(id);
 	}
 	

@@ -25,14 +25,14 @@ public class Medico implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonInclude(Include.NON_NULL)
 	private Long codigo;
-	private String primeironome;
+	private String primeiroNome;
 	private String ultimoNome;
 	private String email;
 	private boolean ativo;
 	private boolean ocupado;
 	
 	public Medico(String primeironome, String ultimoNome, String email, boolean ativo, boolean ocupado) {
-		this.primeironome = primeironome;
+		this.primeiroNome = primeironome;
 		this.ultimoNome = ultimoNome;
 		this.email = email;
 		this.ativo = ativo;
@@ -41,7 +41,7 @@ public class Medico implements Serializable {
 
 	public Medico(Long codigo, String primeironome, String ultimoNome, String email, boolean ativo, boolean ocupado) {
 		this.codigo = codigo;
-		this.primeironome = primeironome;
+		this.primeiroNome = primeironome;
 		this.ultimoNome = ultimoNome;
 		this.email = email;
 		this.ativo = ativo;
@@ -59,12 +59,12 @@ public class Medico implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getPrimeironome() {
-		return primeironome;
+	public String getPrimeiroNome() {
+		return primeiroNome;
 	}
 
-	public void setPrimeironome(String primeironome) {
-		this.primeironome = primeironome;
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
 	}
 
 	public String getUltimoNome() {
