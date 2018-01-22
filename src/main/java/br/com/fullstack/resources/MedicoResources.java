@@ -31,7 +31,7 @@ public class MedicoResources {
 			this.repository.save(medico);
 			return ResponseEntity.status(HttpStatus.OK).build();
 		} catch (Exception e) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 
 	}
@@ -51,7 +51,7 @@ public class MedicoResources {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
 		} catch (Exception e) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
@@ -63,7 +63,7 @@ public class MedicoResources {
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(this.repository.findOne(id));
 		} catch (Exception e) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
