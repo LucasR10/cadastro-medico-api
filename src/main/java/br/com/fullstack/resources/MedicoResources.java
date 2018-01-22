@@ -14,37 +14,57 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fullstack.entities.Medico;
 import br.com.fullstack.repository.MedicoRepository;
-	
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class MedicoResources {
-	
+
 	@Autowired
 	private MedicoRepository repository;
-	
-	public MedicoResources() {}
-	
-	@RequestMapping(value="/adicionar", method=RequestMethod.POST)
-	public void adicionar ( @RequestBody Medico medico ){
-		this.repository.save(medico);
-	}
-	
-	@RequestMapping(value="/deletar/{id}", method=RequestMethod.DELETE)
-	public void  delete( @PathVariable("id") Long id ) {
-	 System.out.println( id );
-		this.repository.delete(id);
-	}
-	
-	
-	@RequestMapping(value="/listar", method=RequestMethod.GET)
-	public ResponseEntity<List<Medico>>  listar() {
-		return ResponseEntity.status(HttpStatus.OK).body( repository.findAll() );
+
+	public MedicoResources() {
 	}
 
-	@RequestMapping(value="/listar/{id}", method=RequestMethod.GET)
-	public Medico buscar( @PathVariable("id") Long id) {
-		return this.repository.findOne(id);
+	@RequestMapping(value = "/adicionar", method = RequestMethod.POST)
+	public ResponseEntity<Void> adicionar(@RequestBody Medico medico) {
+		try {
+			this.repository.save(medico);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+
 	}
 
-	
+	@RequestMapping(value = "/deletar/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+		try {
+			this.repository.delete(id);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
+	public ResponseEntity<List<Medico>> listar() {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@RequestMapping(value = "/listar/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Medico> buscar(@PathVariable("id") Long id) {
+		try {
+			if (repository.findOne(id) == null) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(this.repository.findOne(id));
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
 }
