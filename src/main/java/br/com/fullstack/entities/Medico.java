@@ -25,29 +25,25 @@ public class Medico implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonInclude(Include.NON_NULL)
 	private Long codigo;
-	private String primeiroNome;
+	private String nome;
 	private String ultimoNome;
 	private String email;
+	private String especialidade;
 	private boolean ativo;
 	private boolean ocupado;
 	
-	public Medico(String primeironome, String ultimoNome, String email, boolean ativo, boolean ocupado) {
-		this.primeiroNome = primeironome;
+	
+	
+	public Medico(Long codigo, String nome, String ultimoNome, String email, String especialidade, boolean ativo, boolean ocupado) {
+		this.codigo = codigo;
+		this.nome = nome;
 		this.ultimoNome = ultimoNome;
 		this.email = email;
+		this.especialidade = especialidade;
 		this.ativo = ativo;
 		this.ocupado = ocupado;
 	}
 
-	public Medico(Long codigo, String primeironome, String ultimoNome, String email, boolean ativo, boolean ocupado) {
-		this.codigo = codigo;
-		this.primeiroNome = primeironome;
-		this.ultimoNome = ultimoNome;
-		this.email = email;
-		this.ativo = ativo;
-		this.ocupado = ocupado;
-	}
-	
 	public Medico() {
 	}
 
@@ -59,12 +55,12 @@ public class Medico implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getPrimeiroNome() {
-		return primeiroNome;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setPrimeiroNome(String primeiroNome) {
-		this.primeiroNome = primeiroNome;
+	public void setNome(String primeiroNome) {
+		this.nome = primeiroNome;
 	}
 
 	public String getUltimoNome() {
@@ -99,9 +95,15 @@ public class Medico implements Serializable {
 		this.ocupado = ocupado;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getEspecialidade() {
+		return especialidade;
 	}
+
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
+	}
+
+	
 	
 	
 	
